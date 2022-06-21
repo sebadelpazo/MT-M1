@@ -13,26 +13,26 @@ var a = 5;
 var b = 10;
 var c = function(a, b, c) {
   var x = 10;
-  console.log(x);
-  console.log(a);
+  console.log(x); //10
+  console.log(a); //5
   var f = function(a, b, c) {
     b = a;
-    console.log(b);
+    console.log(b); //5
     b = c;
     var x = 5;
   }
   f(a,b,c);
-  console.log(b);
+  console.log(b); // 10
 }
 c(8,9,10);
-console.log(b);
-console.log(x);
+console.log(b); // 9
+console.log(x); // 1
 ```
 
 ```javascript
-console.log(bar);
-console.log(baz);
-foo();
+console.log(bar); // undefined
+console.log(baz); // undefined
+foo(); // undefined
 function foo() { console.log('Hola!'); }
 var bar = 1;
 baz = 2;
@@ -43,19 +43,19 @@ var instructor = "Tony";
 if(true) {
     var instructor = "Franco";
 }
-console.log(instructor);
+console.log(instructor); //"Franco"
 ```
 
 ```javascript
 var instructor = "Tony";
-console.log(instructor);
+console.log(instructor); // "Tony"
 (function() {
    if(true) {
       var instructor = "Franco";
       console.log(instructor);
    }
 })();
-console.log(instructor);
+console.log(instructor); // "Franco"
 ```
 
 ```javascript
@@ -64,33 +64,33 @@ let pm = "Franco";
 if (true) {
     var instructor = "The Flash";
     let pm = "Reverse Flash";
-    console.log(instructor);
-    console.log(pm);
+    console.log(instructor); // "The Flash"
+    console.log(pm); // "Reverse Flash"
 }
-console.log(instructor);
-console.log(pm);
+console.log(instructor); // "Tony"
+console.log(pm); //"Franco"
 ```
 ### Coerción de Datos
 
 ¿Cuál crees que será el resultado de la ejecución de estas operaciones?:
 
 ```javascript
-6 / "3"
-"2" * "3"
-4 + 5 + "px"
-"$" + 4 + 5
-"4" - 2
-"4px" - 2
-7 / 0
-{}[0]
-parseInt("09")
-5 && 2
-2 && 5
-5 || 0
-0 || 5
-[3]+[3]-[10]
-3>2>1
-[] == ![]
+6 / "3" //
+"2" * "3"  //
+4 + 5 + "px" //
+"$" + 4 + 5 //
+"4" - 2  //
+"4px" - 2 //
+7 / 0 //
+{}[0] //
+parseInt("09") // 0
+5 && 2 // 2
+2 && 5 // 5
+5 || 0 // 5
+0 || 5 // 5
+[3]+[3]-[10] // -4
+3>2>1 //true
+[] == ![] // true
 ```
 
 > Si te quedó alguna duda repasá con [este artículo](http://javascript.info/tutorial/object-conversion).
@@ -102,8 +102,8 @@ parseInt("09")
 
 ```javascript
 function test() {
-   console.log(a);
-   console.log(foo());
+   console.log(a); //undf
+   console.log(foo()); //undf
 
    var a = 1;
    function foo() {
@@ -122,9 +122,9 @@ var snack = 'Meow Mix';
 function getFood(food) {
     if (food) {
         var snack = 'Friskies';
-        return snack;
+        return snack; // 'Friskies'
     }
-    return snack;
+    return snack; // 'Friskies'
 }
 
 getFood(false);
@@ -142,16 +142,16 @@ var obj = {
    prop: {
       fullname: 'Aurelio De Rosa',
       getFullname: function() {
-         return this.fullname;
+         return this.fullname; // 'Aurelio De Rosa'
       }
    }
 };
 
-console.log(obj.prop.getFullname());
+console.log(obj.prop.getFullname()); //  'Natalia Nerea' 'Aurelio De Rosa'
 
 var test = obj.prop.getFullname;
 
-console.log(test());
+console.log(test());  //  'Natalia Nerea' 'Aurelio De Rosa'
 ```
 
 ### Event loop
@@ -166,5 +166,5 @@ function printing() {
    console.log(4);
 }
 
-printing();
+printing(); // el orden es 1,2,3,4 por su estructura
 ```
