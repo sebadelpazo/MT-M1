@@ -3,7 +3,12 @@
 // Closures
 
 function counter() {
-  /*
+  let contador = 1;
+  return function(){
+    return contador++; 
+  }
+} 
+ /*
   Ejercicio 1
 
   La función counter debe retornar otra función. Esta función retornada debe actuar como un contador, retornando un valor numérico que empieza en 1 e incrementa con cada invocación.
@@ -19,9 +24,19 @@ function counter() {
   otroContador()      // 2
   otroContador()      // 3
    */
-}
+
 
 function cacheFunction(cb) {
+  const obj = {};
+  return function(arg){
+    if (obj.hasOwnProperty(arg)){
+      return obj[arg];
+    }
+    const resultcb = cb(arg)
+    obj[arg] = resultcb
+    return resultcb
+  }
+}
   /*
   Ejercicio 2
 
@@ -41,7 +56,7 @@ function cacheFunction(cb) {
   squareCache(5)    // no volverá a invocar a square, simplemente buscará en la caché cuál es el resultado de square(5) y lo retornará (tip: si usaste un objeto, podés usar hasOwnProperty) 
 
   */
-}
+
 
 // Bind
 
@@ -67,8 +82,8 @@ function getNombre() {
   Usando el método bind() guardar, en las dos variables declaradas a continuación, dos funciones que actúen como getNombre pero retornen el nombre del instructor y del alumno, respectivamente.
 */
 
-let getNombreInstructor;
-let getNombreAlumno;
+let getNombreInstructor = getNombre.bind(instructor);
+let getNombreAlumno = getNombre.bind(alumno);
 
 /*
   Ejercicio 4
@@ -80,9 +95,9 @@ function crearCadena(delimitadorIzquierda, delimitadorDerecha, cadena) {
   return delimitadorIzquierda + cadena + delimitadorDerecha;
 }
 
-let textoAsteriscos;
-let textoGuiones;
-let textoUnderscore;
+let textoAsteriscos = crearCadena.bind(this, '*', '*')
+let textoGuiones = crearCadena.bind(null, '-', '-')
+let textoUnderscore = crearCadena.bind(1, '_', '_')
 
 // No modifiquen nada debajo de esta linea
 // --------------------------------
